@@ -1,3 +1,24 @@
+def win(main_j,main_c):
+    result=False
+    if len(main_j)==2 and score(main_j)==21:
+        result=True
+        return result
+    elif len(main_j)<len(main_c) and score(main_j)==21:
+        result=True
+        return result
+    elif len(main_c)==2 and score(main_c)==21:
+        return result
+    elif len(main_c)<len(main_j) and score(main_c)==21:
+        return result
+    elif score(main_j)>21:
+        return result
+    elif score(main_c)>21:
+        result=True
+        return result
+    else:
+        return
+
+
 from random import *
 import tkinter as tk
 def cartes_deck():
@@ -10,3 +31,10 @@ def cartes_deck():
         shuffle(deck)
     return deck
 print(cartes_deck())
+    
+
+
+
+
+
+
