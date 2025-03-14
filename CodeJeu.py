@@ -1,3 +1,15 @@
+from random import *
+import tkinter as tk
+def cartes_deck():
+    couleur = ['carreau','coeur','pique','trefle']
+    valeur = ['as','2','3','4','5','6','7','8','9','10','valet','dame','roi']
+    deck=[]
+    for i in couleur:
+        for k in valeur:
+            deck.append(k+' de '+ i)
+        shuffle(deck)
+    return deck
+
 def win(main_j,main_c):
     result=False
     if len(main_j)==2 and score(main_j)==21:
@@ -18,19 +30,22 @@ def win(main_j,main_c):
     else:
         return
 
+    
 
-from random import *
-import tkinter as tk
-def cartes_deck():
-    couleur = ['carreau','coeur','pique','trefle']
-    valeur = ['as','2','3','4','5','6','7','8','9','10','valet','dame','roi']
-    deck=[]
-    for i in couleur:
-        for k in valeur:
-            deck.append(k+' de '+ i)
-        shuffle(deck)
-    return deck
-print(cartes_deck())
+def hit():
+    global deck
+    global main_j
+    carte=distrib_cartes(deck,1)
+    main_j.append(carte[0])
+
+def stand():
+    continue
+
+deck = cartes_deck()
+main_j = distrib_carte(deck,2)
+main_j = distrib_carte(deck,2)
+
+while win() != True and win()!=False:
     
 
 
