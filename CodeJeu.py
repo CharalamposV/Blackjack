@@ -30,7 +30,36 @@ def win(main_j,main_c):
     else:
         return
 
-    
+def cartes_deck(): #créer un deck de cartes
+    couleur = ['carreau','coeur','pique','trefle']
+    valeur = ['as','2','3','4','5','6','7','8','9','10','valet','dame','roi']
+    deck=[]
+    for i in couleur:
+        for k in valeur:
+            deck.append(k+' de '+ i)
+        shuffle(deck)
+    return deck
+
+def score(carte): #compter le score que donne les cartes en main
+    score = 0
+    for i in carte:
+        if i[0] in ['v','d','r']:
+            score += 10
+        elif i[0] == 'a':
+            if score+11 <= 21:
+                score +=11
+            else:
+                score +=1
+        else:
+            score += int(i[0]+i[1])    
+    return score
+
+def distrib_cartes(deck,nb_cartes): #distribuer le nomvre de carte demandé
+    main = []
+    for i in range(nb_cartes):
+        carte = randint(0, len(deck)-1)
+        main.append(deck.pop(deck[carte]))
+    return main
 
 def hit():
     global deck
@@ -42,11 +71,11 @@ def stand():
     continue
 
 deck = cartes_deck()
-main_j = distrib_carte(deck,2)
-main_j = distrib_carte(deck,2)
+main_j = distrib_cartes(deck,2)
+main_j = distrib_cartes(deck,2)
 
 while win() != True and win()!=False:
-    
+    continue
 
 
 
