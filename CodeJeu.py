@@ -44,7 +44,7 @@ def score(carte): #compter le score que donne les cartes en main
             score += int(i[0]+i[1])    
     return score
 
-def distrib_cartes(deck,nb_cartes): #distribuer le nombre de carte demandé
+def distrib_cartes(deck,nb_cartes): #distribuer le nombre de cartes demandées
     main = []
     for i in range(nb_cartes):
         carte = randint(0, len(deck)-1)
