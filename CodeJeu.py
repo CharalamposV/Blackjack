@@ -1,5 +1,7 @@
 from random import *
+from tkinter import messagebox
 import tkinter as tk
+
 def cartes_deck():
     couleur = ['carreau','coeur','pique','trefle']
     valeur = ['as','2','3','4','5','6','7','8','9','10','valet','dame','roi']
@@ -41,7 +43,11 @@ def score(carte): #compter le score que donne les cartes en main
             else:
                 score +=1
         else:
-            score += int(i[0]+i[1])    
+            for i in range(2,11):
+                if str(i) in carte:
+                    score+=i
+                else:
+                    continue
     return score
 
 def distrib_cartes(deck,nb_cartes): #distribuer le nombre de cartes demandées
@@ -57,26 +63,60 @@ def hit():
     carte=distrib_cartes(deck,1)
     main_j.append(carte[0])
 
-def jouer_croupier():
+
+
+def jouer_croupier(): # selon la règle de la banque tire a 16 et reste a 17
     global main_c
     while score(main_c) < 17:
         main_c.append(deck.pop())
     if score(main_c) > 21:
-        messagebox.showinfo("Gagné", "Le croupier a dépassé 21. Vous avez gagné !")  #d'apres docspython.org
+        messagebox.showinfo("Le croupier a dépassé 21 ")  #d'apres docspython.org
     elif score(main_j) > score(main_c):
         messagebox.showinfo("Vous avez gagné !")
     elif score(main_j) < score(main_c):
         messagebox.showinfo("Vous avez perdu, le croupier a une meilleure main.")
     else:
         messagebox.showinfo("Vous avez fait jeux égales !")
+        
+def abandon():
+    global main_j
+    for i in range(3):
+        main_j.append(10)    
 
+# Creation d'une nouvelle partie
+def nouveu_deck():
+    global deck
+    deck=nouveau_deck()
+    return 
+    
+def nouvelle_partie():
+    global main_j
+    global main_c
+    nouveau_deck()
+    main_j.clear()
+    main_c.clear()
+    main_j = distrib_cartes(deck,2)
+    main_c = distrib_cartes(deck,2)
+    
+    
 deck = cartes_deck()
 main_j = distrib_cartes(deck,2)
-main_j = distrib_cartes(deck,2)
+main_c = distrib_cartes(deck,2)
+
+print("main joueur: ",main_j, "score: ", score(main_j))
+print("main joueur: ",main_j[1], "score: ", score(main_c[1]))
 
 while win() != True and win()!=False:
-    continue
+    choix = input("Voulez vous Hit ou Stand ?")
+    if choix=="Hit":
+        hit()
+    jouer_croupier()
+    print("score du joueur est de: ",score(main_j), "\n le score du croupier est de: ",score(main_c))
 
+
+    
+    
+    
 
 
 
