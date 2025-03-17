@@ -24,6 +24,18 @@ bouton_jouer=tapis.create_window(CANVAS_HEIGHT//2,CANVAS_WIDTH//2,window=bouton_
 racine.mainloop()
 
 
+racine2=tk.Tk()
+racine2.title("interface de jeu")
+#racine.iconbitmap("icone jeu.jpg")
+racine2.geometry("1000x600")
+tapis = tk.Canvas(racine2,height="500",width="800",bg="green")
+tapis.pack()
+bouton_hit=tk.Button(racine2,text="   HIT   ",command=hit, font=32)
+bouton_hit.pack()
+
+racine2.mainloop()
+
+
 #bouton_frame = tk.Frame(racine, bg="green")
 #bouton_hit = tk.Button(bouton_frame, text= "Hit!", font=("Helvetica", 16), command=hit)
 #bouton_stand = tk.Button(bouton_frame, text= "Stand!", font=("Helvetica", 16), command=stand)
