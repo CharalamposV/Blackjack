@@ -30,16 +30,6 @@ def win(main_j,main_c):
     else:
         return
 
-def cartes_deck(): #créer un deck de cartes
-    couleur = ['carreau','coeur','pique','trefle']
-    valeur = ['as','2','3','4','5','6','7','8','9','10','valet','dame','roi']
-    deck=[]
-    for i in couleur:
-        for k in valeur:
-            deck.append(k+' de '+ i)
-        shuffle(deck)
-    return deck
-
 def score(carte): #compter le score que donne les cartes en main
     score = 0
     for i in carte:
@@ -77,6 +67,20 @@ main_j = distrib_cartes(deck,2)
 while win() != True and win()!=False:
     continue
 
+
+
+def jouer_croupier():
+    global main_c
+    while score(main_c) < 17:
+        main_c.append(deck.pop())
+    if score(main_c) > 21:
+        messagebox.showinfo("Gagné", "Le croupier a dépassé 21. Vous avez gagné !")  #d'apres docspython.org
+    elif score(main_j) > score(main_c):
+        messagebox.showinfo("Vous avez gagné !")
+    elif score(main_j) < score(main_c):
+        messagebox.showinfo("Vous avez perdu, le croupier a une meilleure main.")
+    else:
+        messagebox.showinfo("Vous avez fait jeux égales !")
 
 
 
