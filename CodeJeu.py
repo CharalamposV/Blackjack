@@ -81,7 +81,22 @@ def jouer_croupier(): # selon la règle de la banque tire a 16 et reste a 17
 def abandon():
     global main_j
     for i in range(3):
-        main_j.append(10)    
+        main_j.append(10)  
+        
+def mise():
+    mise_min=1000
+    if mise<mise_min:
+        return
+        val=v_min+1000
+def mise_multi_10():
+    val=val*10
+    return
+def mise_multi_2():
+    val=val*2
+    return
+def mise_multi_5():
+    val=val*5
+
 
 # Creation d'une nouvelle partie
 def nouveu_deck():
@@ -98,7 +113,7 @@ def nouvelle_partie():
     main_j = distrib_cartes(deck,2)
     main_c = distrib_cartes(deck,2)
     
-    
+
 deck = cartes_deck()
 main_j = distrib_cartes(deck,2)
 main_c = distrib_cartes(deck,2)
@@ -112,8 +127,7 @@ while win() != True and win()!=False:
         hit()
     jouer_croupier()
     print("score du joueur est de: ",score(main_j), "\n le score du croupier est de: ",score(main_c))
-
-
+    
     
     
     
