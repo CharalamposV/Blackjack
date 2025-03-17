@@ -1,4 +1,4 @@
-#Interface graphique fonctions et variables pas complètes
+#Trouvé sur internet, ->pour s'en inspirer, Interface graphique fonctions et variables pas complètes
 #finir de def les variables (tk, creer_paquet)
 class BlackjackApp:
     def __init__(self, root):
