@@ -57,18 +57,6 @@ def hit():
     carte=distrib_cartes(deck,1)
     main_j.append(carte[0])
 
-def stand():
-    continue
-
-deck = cartes_deck()
-main_j = distrib_cartes(deck,2)
-main_j = distrib_cartes(deck,2)
-
-while win() != True and win()!=False:
-    continue
-
-
-
 def jouer_croupier():
     global main_c
     while score(main_c) < 17:
@@ -81,6 +69,17 @@ def jouer_croupier():
         messagebox.showinfo("Vous avez perdu, le croupier a une meilleure main.")
     else:
         messagebox.showinfo("Vous avez fait jeux égales !")
+
+deck = cartes_deck()
+main_j = distrib_cartes(deck,2)
+main_j = distrib_cartes(deck,2)
+
+while win() != True and win()!=False:
+    continue
+
+
+
+
 
 
 
