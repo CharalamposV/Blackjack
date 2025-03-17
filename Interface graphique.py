@@ -12,6 +12,7 @@ salutation= tapis.create_text(CANVAS_WIDTH//2,50,text="Bienvenue au BlackJack !"
 
 bouton_jouer=tk.Button(racine,text="JOUER",font=("helvetica","30"))
 bouton_jouer=tapis.create_window(CANVAS_HEIGHT//2,CANVAS_WIDTH//2,window=bouton_jouer)
+racine.mainloop()
 
 
 #bouton_frame = tk.Frame(racine, bg="green")
