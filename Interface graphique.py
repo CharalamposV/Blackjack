@@ -58,7 +58,12 @@ footer = tk.Label(racine,text="Cliquez sur 'JOUER' pour démarrer la partie",fon
 footer.pack(side="bottom", pady=20)
 
 racine.mainloop()
-
+######################### page de fin 
+def re_jouer():
+    print("Voulez vous rejouez ?")
+    racine.destroy()
+def quitter():
+    racine.destroy()
 #bouton_frame = tk.Frame(racine, bg="green")
 #bouton_hit = tk.Button(bouton_frame, text= "Hit!", font=("Helvetica", 16), command=hit)
 #bouton_stand = tk.Button(bouton_frame, text= "Stand!", font=("Helvetica", 16), command=stand)
