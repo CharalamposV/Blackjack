@@ -120,16 +120,34 @@ def nouvelle_partie():
     main_c.clear()
     main_j = distrib_cartes(deck,2)
     main_c = distrib_cartes(deck,2)
-    
+
+def stand():
+    global main_c
+    while score(main_c) < 17:
+        carte = deck.pop(0)
+        main_c.append(carte)
+    if score(main_c) > 21:
+        return True
+    elif score(main_c) == 21:
+        return False
+    elif score(main_c) > score(main_j):
+        return False
+    elif score(main_c) < score(main_j):
+        return True
+    else:
+        return False    
 
 deck = cartes_deck()
 main_j = distrib_cartes(deck,2)
 main_c = distrib_cartes(deck,2)
+mise = 100  
+banque = 1000
 
 print("main joueur: ",main_j, "score: ", score(main_j))
 print("main joueur: ",main_j[1], "score: ", score(main_c[1]))
 
-while win(main_j,main_c) != True:
+
+while win(main_j,main_c,mise,banque) != True:
     print('Main joueur:',main_j)
     print('Main croupier:',main_c)
     print('Score joueur:',score(main_j))
@@ -138,22 +156,21 @@ while win(main_j,main_c) != True:
     choix = input()
     if choix == 'oui':
         hit()
-        if win(main_j,main_c) == True:
+        if win(main_j,main_c,mise,banque) == True:
             print('Vous avez gagné !')
             break
-        elif win(main_j,main_c) == False:
+        elif win(main_j,main_c,mise,banque) == False:
             print('Vous avez perdu !')
             break
     elif choix == 'non':
-        #stand()
-        if win(main_j,main_c) == True:
+        stand()
+        if win(main_j,main_c,mise,banque) == True:
             print('Vous avez gagné !')
             break
-        elif win(main_j,main_c) == False:
+        elif win(main_j,main_c,mise,banque) == False:
             print('Vous avez perdu !')
             break
-    
-    
+print('Votre banque est maintenant de:',banque)
     
 
 
