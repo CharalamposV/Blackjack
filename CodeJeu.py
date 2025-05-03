@@ -134,17 +134,12 @@ def stand():
     else:
         return False    
 
-deck = cartes_deck()
+'''deck = cartes_deck()
 main_j = distrib_cartes(deck,2)
 main_c = distrib_cartes(deck,2)
 mise = 100  
 banque = 1000
-
-print("main joueur: ",main_j, "score: ", score(main_j))
-print("main joueur: ",main_j[1], "score: ", score(main_c[1]))
-
-
-'''while win(main_j,main_c,mise,banque) != True:
+while win(main_j,main_c,mise) != True:
     print('Main joueur:',main_j)
     print('Main croupier:',main_c)
     print('Score joueur:',score(main_j))
@@ -153,18 +148,18 @@ print("main joueur: ",main_j[1], "score: ", score(main_c[1]))
     choix = input()
     if choix == 'oui':
         hit()
-        if win(main_j,main_c,mise,banque) == True:
+        if win(main_j,main_c,mise) == True:
             print('Vous avez gagné !')
             break
-        elif win(main_j,main_c,mise,banque) == False:
+        elif win(main_j,main_c,mise) == False:
             print('Vous avez perdu !')
             break
     elif choix == 'non':
-        stand()
-        if win(main_j,main_c,mise,banque) == True:
+        #stand()
+        if win(main_j,main_c,mise) == True:
             print('Vous avez gagné !')
             break
-        elif win(main_j,main_c,mise,banque) == False:
+        elif win(main_j,main_c,mise) == False:
             print('Vous avez perdu !')
             break
 print('Votre banque est maintenant de:',banque)'''
