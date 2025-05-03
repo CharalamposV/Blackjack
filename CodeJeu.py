@@ -96,6 +96,27 @@ def mise_multi_2():
     return
 def mise_multi_5():
     val=val*5
+############################
+def calculer_gain(mise,score(main_j), score(main_c), blackjack_j=False, blackjack_c=False):  # fonction de calcul du gain 
+    
+    if blackjack_j and not blackjack_c:
+        return mise * 1.5
+    elif blackjack_j and blackjack_c:
+        return 0
+        
+    if score(main_j) > 21:
+        return -mise
+        
+    elif score(main_c) > 21:
+        return mise
+        
+    elif score(main_j) > score(main_c):
+        return mise
+    elif score(main_j) < score(main_c):
+        return -mise
+    else:
+        return 0
+###########################
 
 
 # Creation d'une nouvelle partie
