@@ -50,11 +50,11 @@ def score(carte): #compter le score que donne les cartes en main
                     continue
     return score
 
-def distrib_cartes(deck,nb_cartes): #distribuer le nombre de cartes demandées
+def distrib_cartes(deck,nb_cartes): #distribuer le nombre de carte demandé
     main = []
     for i in range(nb_cartes):
-        carte = randint(0, len(deck)-1)
-        main.append(deck.pop(deck[carte]))
+        carte = deck.pop(0)
+        main.append(carte)
     return main
 
 def hit():
@@ -142,13 +142,29 @@ main_c = distrib_cartes(deck,2)
 print("main joueur: ",main_j, "score: ", score(main_j))
 print("main joueur: ",main_j[1], "score: ", score(main_c[1]))
 
-while win() != True and win()!=False:
-    choix = input("Voulez vous Hit ou Stand ?")
-    if choix=="Hit":
+while win(main_j,main_c) != True:
+    print('Main joueur:',main_j)
+    print('Main croupier:',main_c)
+    print('Score joueur:',score(main_j))
+    print('Score croupier:',score(main_c))
+    print('Voulez-vous tirer une carte ? (oui/non)')
+    choix = input()
+    if choix == 'oui':
         hit()
-    jouer_croupier()
-    print("score du joueur est de: ",score(main_j), "\n le score du croupier est de: ",score(main_c))
-    
+        if win(main_j,main_c) == True:
+            print('Vous avez gagné !')
+            break
+        elif win(main_j,main_c) == False:
+            print('Vous avez perdu !')
+            break
+    elif choix == 'non':
+        #stand()
+        if win(main_j,main_c) == True:
+            print('Vous avez gagné !')
+            break
+        elif win(main_j,main_c) == False:
+            print('Vous avez perdu !')
+            break
     
     
     
