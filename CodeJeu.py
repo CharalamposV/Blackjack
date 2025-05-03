@@ -147,7 +147,7 @@ print("main joueur: ",main_j, "score: ", score(main_j))
 print("main joueur: ",main_j[1], "score: ", score(main_c[1]))
 
 
-while win(main_j,main_c,mise,banque) != True:
+'''while win(main_j,main_c,mise,banque) != True:
     print('Main joueur:',main_j)
     print('Main croupier:',main_c)
     print('Score joueur:',score(main_j))
@@ -170,7 +170,7 @@ while win(main_j,main_c,mise,banque) != True:
         elif win(main_j,main_c,mise,banque) == False:
             print('Vous avez perdu !')
             break
-print('Votre banque est maintenant de:',banque)
+print('Votre banque est maintenant de:',banque)'''
     
 
 
