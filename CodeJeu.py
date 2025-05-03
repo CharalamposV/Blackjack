@@ -12,7 +12,8 @@ def cartes_deck():
         shuffle(deck)
     return deck
 
-def win(main_j,main_c,mise,banque):
+def win(main_j,main_c,mise):
+    global banque
     result=False
     if len(main_j)==2 and score(main_j)==21:
         result=True
@@ -52,11 +53,7 @@ def score(carte): #compter le score que donne les cartes en main
             else:
                 score +=1
         else:
-            for i in range(2,11):
-                if str(i) in carte:
-                    score+=i
-                else:
-                    continue
+            score += int(i[0]+i[1])    
     return score
 
 def distrib_cartes(deck,nb_cartes): #distribuer le nombre de carte demandé
