@@ -1,4 +1,5 @@
 import tkinter as tk 
+from tkinter import messagebox
 CANVAS_HEIGHT,CANVAS_WIDTH=800,800
 
 def fermer():
@@ -58,13 +59,29 @@ footer = tk.Label(racine,text="Cliquez sur 'JOUER' pour démarrer la partie",fon
 footer.pack(side="bottom", pady=20)
 
 racine.mainloop()
-######################### page de fin 
+######################### page de fin ########################
 def re_jouer():
     print("Voulez vous rejouez ?")
     racine.destroy()
 def quitter():
     racine.destroy()
-#bouton_frame = tk.Frame(racine, bg="green")
-#bouton_hit = tk.Button(bouton_frame, text= "Hit!", font=("Helvetica", 16), command=hit)
-#bouton_stand = tk.Button(bouton_frame, text= "Stand!", font=("Helvetica", 16), command=stand)
+
+racine_3= tk.Tk()
+racine_3.title("Blackjack - Page de fin")
+racine_3.geometry("600x400")
+racine_3.configure(bg="darkgreen")  
+
+bouton_re_jouer = tk.Button(racine_3,text="🔄 Rejouer",font=("Helvetica", 25),bg="white",fg="black",padx=20,pady=10,)
+bouton_re_jouer.pack(pady=20)
+bouton_quitter=tk.Button(racine_3,text="❌ Quitter",font=("Helvetica", 25),bg="white",fg="black",padx=20,pady=10)
+bouton_quitter.pack(pady=50)
+
+if banque > 0:
+    messagebox.showinfo("Résultat", f"Vous avez gagné la somme de : {banque} euros")
+elif banque < 0:
+    messagebox.showinfo("Résultat", f"Vous avez perdu la somme de : {abs(banque)} euros")
+else:
+    messagebox.showinfo("Résultat", "Vous n'avez rien gagné... Rejouez à nouveau !")
+
+racine_3.mainloop()
 
