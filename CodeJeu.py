@@ -12,21 +12,30 @@ def cartes_deck():
         shuffle(deck)
     return deck
 
-def win(main_j,main_c):
+def win(main_j,main_c,mise,banque):
     result=False
     if len(main_j)==2 and score(main_j)==21:
         result=True
+        banque += mise*1.5
         return result
     elif len(main_j)<len(main_c) and score(main_j)==21:
         result=True
+        banque += mise*1.5
         return result
     elif len(main_c)==2 and score(main_c)==21:
+        banque -= mise*1.5
+        result=False
         return result
     elif len(main_c)<len(main_j) and score(main_c)==21:
+        banque -= mise*1.5
+        result=False
         return result
     elif score(main_j)>21:
+        result=False
+        banque -= mise
         return result
     elif score(main_c)>21:
+        banque += mise
         result=True
         return result
     else:
@@ -96,28 +105,6 @@ def mise_multi_2():
     return
 def mise_multi_5():
     val=val*5
-############################
-def calculer_gain(mise,score(main_j), score(main_c), blackjack_j=False, blackjack_c=False):  # fonction de calcul du gain 
-    
-    if blackjack_j and not blackjack_c:
-        return mise * 1.5
-    elif blackjack_j and blackjack_c:
-        return 0
-        
-    if score(main_j) > 21:
-        return -mise
-        
-    elif score(main_c) > 21:
-        return mise
-        
-    elif score(main_j) > score(main_c):
-        return mise
-    elif score(main_j) < score(main_c):
-        return -mise
-    else:
-        return 0
-###########################
-
 
 # Creation d'une nouvelle partie
 def nouveu_deck():
