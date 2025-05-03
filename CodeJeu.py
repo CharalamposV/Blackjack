@@ -163,6 +163,67 @@ while win(main_j,main_c,mise) != True:
             print('Vous avez perdu !')
             break
 print('Votre banque est maintenant de:',banque)'''
+
+def afficher_carte(frame, carte, position_x):
+    
+    chemin_image = f"cards/{carte}.png"
+    if chemin_image:
+        img = Image.open(chemin_image).resize((60,100))  
+        photo = ImageTk.PhotoImage(img)
+
+        
+        label = tk.Label(frame, image=photo)
+        label.image = photo  
+        label.pack(side=tk.LEFT,padx=position_x,pady=10)
+
+def fermer():
+        racine.destroy()
+        return
+def jouer():
+    fermer()
+    jeu()
+def jeu():
+    racine2=tk.Tk()
+    racine2.title("interface de jeu")
+    #racine.iconbitmap("icone jeu.jpg")
+    racine2.geometry("1800x1300")
+    racine2.configure(bg='darkgreen')
+    frame_c= tk.Frame(racine2, bg='darkgreen')
+    frame_c.pack(pady=20)
+    frame_j= tk.Frame(racine2,bg='darkgreen')
+    frame_j.pack(pady=20)
+    position= tk.Label(frame_c,text='main croupier')
+    position.pack()
+    deck=cartes_deck()
+    main_j = distrib_cartes(deck,2)
+    main_c = distrib_cartes(deck,2)
+    afficher_carte(frame_j, main_j[0],10)
+    afficher_carte(frame_j, main_j[1],11)
+    afficher_carte(frame_c,main_c[0],10)
+    afficher_carte(frame_c, main_c[1],11)
+    racine2.mainloop()
+
+racine = tk.Tk()
+racine.title("Blackjack - Page d'accueil")
+racine.geometry("800x600")
+racine.configure(bg="darkgreen")  
+
+titre = tk.Label(racine, text="🃏 BLACKJACK 🃏", font=("Helvetica", 40, "bold"), fg="white", bg="darkgreen")
+titre.pack(pady=50)
+
+emojis = tk.Label(racine,text="♠  ♣  ♥  ♦  Atteignez 21 sans dépasser !  ♠  ♥  ♣  ♦",font=("Helvetica", 18),fg="white",bg="darkgreen")
+emojis.pack(pady=20)
+
+accroche = tk.Label(racine,text="🎰 Faites vos jeux... Et tentez de remporter la mise ! 🎰",font=("Helvetica", 20, "italic"),fg="white",bg="darkgreen")
+accroche.pack(pady=15)
+
+bouton_jouer = tk.Button(racine,text="▶ JOUER",font=("Helvetica", 25, "bold"),bg="white",fg="black",padx=20,pady=10,command=jouer)
+bouton_jouer.pack(pady=60)
+
+footer = tk.Label(racine,text="Cliquez sur 'JOUER' pour démarrer la partie",font=("Helvetica", 14),fg="white",bg="darkgreen")
+footer.pack(side="bottom", pady=20)
+racine.mainloop()
+
     
 
 
