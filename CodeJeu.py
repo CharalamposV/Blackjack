@@ -165,7 +165,7 @@ while win(main_j,main_c,mise) != True: # fonction permettant de jouer dans la co
 print('Votre banque est maintenant de:',banque)
 
 
-def afficher_carte(frame, carte, position_x): #fonction d'affichage des cartes sur le tapis de jeu
+def afficher_carte(frame, carte, position_x): #fonction d'affichage des cartes sur le tapis de jeu #https://fr.python-3.com/?p=1922
     
     chemin_image = f"cards/{carte}.png"
     if chemin_image:
