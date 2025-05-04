@@ -297,7 +297,7 @@ def main():
     racine2.mainloop()
     
    
-
+#création de la page d'accueil
 racine = tk.Tk()
 racine.title("Blackjack - Page d'accueil")
 racine.geometry("800x600")
