@@ -60,12 +60,15 @@ def score(main): #compter le score que donne les cartes en main
         if v in ['10','valet','dame','roi']:
             total += 10
         elif v == 'as':
-            if total+11 <= 21:
-                total +=11
-            else:
-                total +=1
+            nb_as +=1
+            total +=11
         else:
             total += int(v)    
+    
+    while total > 21 and nb_as >0:
+        total -= 10
+        nb_as -= 1    
+    
     return total
 
 def distrib_cartes(deck,nb_cartes): #distribuer le nombre de cartes demandé
@@ -234,81 +237,91 @@ def jouer():
     main()
 
 def main():
-    global frame_j,frame_c,bouton_hit,bouton_stand,deck,main_j,main_c,bouton_ff,racine2,label_var,menu_var
-    racine2=tk.Tk()
-    racine2.title("interface de jeu")
+    global frame_j, frame_c, bouton_hit, bouton_stand, deck, main_j, main_c, bouton_ff, racine2, label_var, menu_var
+
+    racine2 = tk.Tk()
+    racine2.title("Interface de jeu")
     racine2.geometry("1440x920")
     racine2.configure(bg='darkgreen')
+    
+    frame_principale = tk.Frame(racine2, width=1440, height=920)
+    frame_principale.pack(fill=tk.BOTH, expand=True)
 
-    frame_global= tk.Frame(racine2,bg='darkgreen')
-    frame_global.pack(expand=True, fill=tk.BOTH)
-    
-    frame_c= tk.Frame(frame_global, bg='darkgreen')
+    tapis = tk.Canvas(frame_principale, width=1440, height=920, bg='darkgreen')
+    tapis.pack(fill=tk.BOTH, expand=True)
+
+    tapis.create_text(220, 400, text="🃏 🃏", font=("Helvetica", 120),fill='white')
+    tapis.create_text(1700, 400, text="🃏 🃏", font=("Helvetica", 120),fill='white')
+
+    frame_global = tk.Frame(frame_principale, bg='darkgreen')
+    frame_global.place(relx=0.5, rely=0.45, anchor='center')
+
+    frame_c = tk.Frame(frame_global, bg='darkgreen')
     frame_c.pack(pady=90)
-    
-    frame_j= tk.Frame(frame_global,bg='darkgreen')
+
+    frame_j = tk.Frame(frame_global, bg='darkgreen')
     frame_j.pack(pady=200)
 
-    # options de style
-symbole_c_g= tk.Label(frame_c, text="♠ ♣", font=("Helvetica", 27), bg='darkgreen', fg='white')
-symbole_c_g.pack(side=tk.LEFT, padx=18)
+    symbole_c_g = tk.Label(frame_c, text="♠ ♣", font=("Helvetica", 27), bg='darkgreen', fg='white')
+    symbole_c_g.pack(side=tk.LEFT, padx=18)
 
-symbole_c_d= tk.Label(frame_c, text="♥ ♦", font=("Helvetica", 27), bg='darkgreen', fg='white')
-symbole_c_d.pack(side=tk.RIGHT, padx=18)
+    symbole_c_d = tk.Label(frame_c, text="♥ ♦", font=("Helvetica", 27), bg='darkgreen', fg='white')
+    symbole_c_d.pack(side=tk.RIGHT, padx=18)
 
-symbole_j_g= tk.Label(frame_j, text="♠ ♣", font=("Helvetica", 27), bg='darkgreen', fg='white')
-symbole_j_g.pack(side=tk.LEFT, padx=18)
+    symbole_j_g = tk.Label(frame_j, text="♠ ♣", font=("Helvetica", 27), bg='darkgreen', fg='white')
+    symbole_j_g.pack(side=tk.LEFT, padx=18)
 
-symbole_j_d = tk.Label(frame_j, text="♥ ♦", font=("Helvetica", 30), bg='darkgreen', fg='white')
-symbole_j_d.pack(side=tk.RIGHT, padx=18)
+    symbole_j_d = tk.Label(frame_j, text="♥ ♦", font=("Helvetica", 30), bg='darkgreen', fg='white')
+    symbole_j_d.pack(side=tk.RIGHT, padx=18)
 
-
-    position= tk.Label(frame_c,text='main croupier')
+    position = tk.Label(frame_c, text='main croupier', bg='darkgreen', fg='white', font=("Helvetica", 16))
     position.pack()
-    
-    position1= tk.Label(frame_j,text='main joueur')
+
+    position1 = tk.Label(frame_j, text='main joueur', bg='darkgreen', fg='white', font=("Helvetica", 16))
     position1.pack()
-    
-    deck=cartes_deck()
-    main_j = distrib_cartes(deck,2)
-    main_c = distrib_cartes(deck,2)
-    
-    afficher_carte(frame_j, main_j[0],10) 
-    afficher_carte(frame_j, main_j[1],11)
-    afficher_carte(frame_c,main_c[0],10)
-    afficher_carte(frame_c, main_c[1],11)
-    
-    label_var=tk.StringVar()
-    label_var.set(f"Mise actuelle : {mise} €")
-    
-    frame_boutons = tk.Frame(racine2, bg='darkgreen')
-    frame_boutons.pack(side=tk.BOTTOM, fill=tk.X, pady=30)
-    
+
+    deck = cartes_deck()
+    main_j = distrib_cartes(deck, 2)
+    main_c = distrib_cartes(deck, 2)
+
+    afficher_carte(frame_j, main_j[0], 10)
+    afficher_carte(frame_j, main_j[1], 11)
+    afficher_carte(frame_c, main_c[0], 10)
+    afficher_carte(frame_c, main_c[1], 11)
+
+    # Boutons en bas
+    frame_boutons = tk.Frame(frame_principale, bg='darkgreen')
+    frame_boutons.place(relx=0.5, rely=0.9, anchor='center')
+
+    label_variable = tk.StringVar()
+    label_variable.set(f"Mise actuelle : {mise} €")
+
     bouton_ff = tk.Button(frame_boutons, text="Abandon :(", font=("Helvetica", 16), command=page_fin,
                           bg='red', fg='white', padx=20, pady=10)
-    bouton_ff.pack(side=tk.LEFT, padx=80)
-    
-    espace = tk.Label(frame_boutons, text="", bg='darkgreen') 
-    espace.pack(side=tk.LEFT, expand=True)
-    
+    bouton_ff.pack(side=tk.LEFT, padx=20)
+
     bouton_stand = tk.Button(frame_boutons, text="Stand", font=("Helvetica", 16), command=stand,
                              bg='orange', fg='black', padx=20, pady=10)
-    bouton_stand.pack(side=tk.RIGHT, padx=30)
-    
+    bouton_stand.pack(side=tk.LEFT, padx=20)
+
     bouton_hit = tk.Button(frame_boutons, text="Hit!", font=("Helvetica", 16), command=hit,
                            bg='lightgreen', fg='black', padx=20, pady=10)
-    bouton_hit.pack(side=tk.RIGHT, padx=30)
-    
-    menu_var = tk.StringVar()
-    options = ["Mise x1","Mise x2", "Mise x5", "Mise x10"]
-    menu_var.set(options[0])
-    dropdown = tk.OptionMenu(frame_boutons, menu_var, *options, command=lambda: on_select())
-    dropdown.pack(side=tk.LEFT, padx=10)
-    label = tk.Label(frame_boutons, textvariable=label_var, font=("Helvetica",16))
+    bouton_hit.pack(side=tk.LEFT, padx=20)
+
+    options = ["Mise x1", "Mise x2", "Mise x5", "Mise x10"]
+    variable = tk.StringVar()
+    variable.set(options[0])
+    menu = tk.OptionMenu(frame_boutons, variable, *options, command=lambda: on_select(None))
+    menu.pack(side=tk.LEFT, padx=10)
+
+    label = tk.Label(frame_boutons, textvariable=label_variable, font=("Helvetica", 16), bg='darkgreen', fg='white')
     label.pack(side=tk.LEFT, padx=10)
-    button = tk.Button(frame_boutons, text="Mise", command=lambda :on_select(None))
-    button.pack(side=tk.LEFT, padx=10)
+
+    boutton_mise = tk.Button(frame_boutons, text="Mise", command=lambda: on_select(None))
+    boutton_mise.pack(side=tk.LEFT, padx=10)
+    tapis.lower(frame_global)
     racine2.mainloop()
+
     
    
 #création de la page d'accueil
