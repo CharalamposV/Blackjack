@@ -66,6 +66,7 @@ def distrib_cartes(deck,nb_cartes): #distribuer le nombre de carte demandé
 def hit(): #fonction donnant la possibilité au joueur de hit
     global deck
     global main_j
+    global frame_j
     carte=distrib_cartes(deck,1)
     main_j.append(carte[0])
     afficher_carte(frame_j,main_j[len(main_j)-1],10+len(main_j))
