@@ -10,7 +10,7 @@ def cartes_deck():
     shuffle(deck)
     return deck
 
-def win(main_j,main_c,mise):
+def win(main_j,main_c,mise): #fonction traitant des conditions de victoire
     global banque
     result=False
     if len(main_j)==2 and score(main_j)==21:
@@ -68,7 +68,7 @@ def score(main): #compter le score que donne les cartes en main
             total += int(v)    
     return total
 
-def distrib_cartes(deck,nb_cartes): #distribuer le nombre de carte demandé
+def distrib_cartes(deck,nb_cartes): #distribuer le nombre de cartes demandé
     main = []
     for i in range(nb_cartes):
         carte = deck.pop(0)
@@ -100,7 +100,7 @@ def jouer_croupier(): # selon la règle de la banque tire a 16 et reste a 17
     else:
         messagebox.showinfo("Vous avez fait jeux égales !")
         
-def mise():
+def mise(): #fonction permettant au joueur de miser
     mise_min=100
     if mise<mise_min:
         val=mise+mise_min
@@ -172,16 +172,21 @@ banque = 1000
             print('Vous avez perdu !')
             break
 print('Votre banque est maintenant de:',banque)'''
+
 def page_fin():
     racine_3= tk.Tk()
     racine_3.title("Blackjack - Page de fin")
     racine_3.geometry("600x400")
     racine_3.configure(bg="#8E9189")  
     racine_3.attributes('-topmost', True)
-    bouton_re_jouer = tk.Button(racine_3,text="🔄 Rejouer",font=("Helvetica", 25),bg="white",fg="black",padx=20,pady=10,command=lambda: [racine_3.destroy(),racine2.destroy(),main()])
+    bouton_re_jouer = tk.Button(racine_3,text="🔄 Rejouer",font=("Helvetica", 25),bg="white",fg="black"
+    ,padx=20,pady=10,command=lambda: [racine_3.destroy(),racine2.destroy(),main()])
     bouton_re_jouer.pack(pady=20)
-    bouton_quitter=tk.Button(racine_3,text="❌ Quitter",font=("Helvetica", 25),bg="white",fg="black",padx=20,pady=10,command=lambda : [racine_3.destroy(),racine2.destroy()])
+    
+    bouton_quitter=tk.Button(racine_3,text="❌ Quitter",font=("Helvetica", 25),bg="white",fg="black"
+    ,padx=20,pady=10,command=lambda : [racine_3.destroy(),racine2.destroy()])
     bouton_quitter.pack(pady=50)
+    
     bouton_hit.configure(state="disabled")
     bouton_stand.configure(state="disabled")
     bouton_ff.configure(state="disabled")
@@ -195,6 +200,7 @@ def page_fin():
         messagebox.showinfo("Résultat", "Vous n'avez rien gagné... Rejouez à nouveau !")'''
 
     racine_3.mainloop()
+    
 def on_select(event):
     global mise
     choix = menu_var.get()
@@ -222,9 +228,11 @@ def afficher_carte(frame, carte, position_x):
 def fermer():
         racine.destroy()
         return
+    
 def jouer():
     fermer()
     main()
+
 def main():
     global frame_j,frame_c,bouton_hit,bouton_stand,deck,main_j,main_c,bouton_ff,racine2,label_var,menu_var
     racine2=tk.Tk()
