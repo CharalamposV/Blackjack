@@ -70,6 +70,19 @@ def hit(): #fonction donnant la possibilité au joueur de hit
     main_j.append(carte[0])
 
 
+def split(main_j, deck):
+    if len(main_j) != 2:
+        return False
+    carte1 = main_j.pop(0)
+    carte2 = main_j.pop(0)
+    if score(carte1) != score(carte2):
+        return False
+    else:
+        main_j1 = [carte1]
+        main_j2 = [carte2]
+        main_j1.append(deck.pop(0))
+        main_j2.appennd(deck.pop(0))
+        return main_j1,main_j2
 
 def jouer_croupier(): #fonction faisant jouer le croupier selon la règle de la banque tire a 16 et reste a 17
     global main_c
