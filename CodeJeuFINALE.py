@@ -248,7 +248,21 @@ def main():
     
     frame_j= tk.Frame(frame_global,bg='darkgreen')
     frame_j.pack(pady=200)
-    
+
+    # options de style
+symbole_c_g= tk.Label(frame_c, text="♠ ♣", font=("Helvetica", 27), bg='darkgreen', fg='white')
+symbole_c_g.pack(side=tk.LEFT, padx=18)
+
+symbole_c_d= tk.Label(frame_c, text="♥ ♦", font=("Helvetica", 27), bg='darkgreen', fg='white')
+symbole_c_d.pack(side=tk.RIGHT, padx=18)
+
+symbole_j_g= tk.Label(frame_j, text="♠ ♣", font=("Helvetica", 27), bg='darkgreen', fg='white')
+symbole_j_g.pack(side=tk.LEFT, padx=18)
+
+symbole_j_d = tk.Label(frame_j, text="♥ ♦", font=("Helvetica", 30), bg='darkgreen', fg='white')
+symbole_j_d.pack(side=tk.RIGHT, padx=18)
+
+
     position= tk.Label(frame_c,text='main croupier')
     position.pack()
     
