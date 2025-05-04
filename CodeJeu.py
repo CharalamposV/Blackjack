@@ -9,7 +9,7 @@ def cartes_deck(): #fonction de création dun jeu de cartes
     for i in couleur:
         for k in valeur:
             deck.append(k+' de '+ i)
-        shuffle(deck)
+    shuffle(deck)
     return deck
 
 def win(main_j,main_c,mise): #fonction de conditions de victoire 
