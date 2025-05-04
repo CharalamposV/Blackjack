@@ -124,7 +124,7 @@ def nouveu_deck(): # Creation d'une nouvelle partie et d'un nouveau deck de cart
     deck=nouveau_deck()
     return 
     
-def nouvelle_partie():
+def nouvelle_partie(): #fonction de nouvelle partie 
     global main_j
     global main_c
     nouveau_deck()
@@ -133,12 +133,13 @@ def nouvelle_partie():
     main_j = distrib_cartes(deck,2)
     main_c = distrib_cartes(deck,2)   
 
-'''deck = cartes_deck()
+deck = cartes_deck()
 main_j = distrib_cartes(deck,2)
 main_c = distrib_cartes(deck,2)
 mise = 100  
 banque = 1000
-while win(main_j,main_c,mise) != True:
+
+while win(main_j,main_c,mise) != True: # fonction permettant de jouer dans la console 
     print('Main joueur:',main_j)
     print('Main croupier:',main_c)
     print('Score joueur:',score(main_j))
@@ -161,7 +162,8 @@ while win(main_j,main_c,mise) != True:
         elif win(main_j,main_c,mise) == False:
             print('Vous avez perdu !')
             break
-print('Votre banque est maintenant de:',banque)'''
+print('Votre banque est maintenant de:',banque)
+
 
 def afficher_carte(frame, carte, position_x): #fonction d'affichage des cartes sur le tapis de jeu
     
@@ -186,7 +188,6 @@ def jouer(): # fonction de début de partie
 def jeu(): # deuxième interface de jeu 
     racine2=tk.Tk()
     racine2.title("interface de jeu")
-    #racine.iconbitmap("icone jeu.jpg")
     racine2.geometry("1800x1300")
     racine2.configure(bg='darkgreen')
     frame_c= tk.Frame(racine2, bg='darkgreen')
@@ -205,7 +206,7 @@ def jeu(): # deuxième interface de jeu
     racine2.mainloop()
 
 
-racine = tk.Tk() # création de l'interface de la page d'accueil
+racine = tk.Tk()  #création de l'interface de la page d'accueil
 racine.title("Blackjack - Page d'accueil")
 racine.geometry("800x600")
 racine.configure(bg="darkgreen")  
