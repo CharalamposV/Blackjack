@@ -187,7 +187,7 @@ def page_fin(): #code de la page de fin de jeu
     racine_3.attributes('-topmost', True) # la fenetre reste au premier plan 
     
     bouton_re_jouer = tk.Button(racine_3,text="🔄 Rejouer",font=("Helvetica", 25),bg="white",fg="black"
-    ,padx=20,pady=10,command=lambda: [racine_3.destroy(),racine2.destroy(),main()])
+    ,padx=20,pady=10,command=lambda: [racine_3.destroy(),racine2.destroy(),jeu()])
     bouton_re_jouer.pack(pady=20)
     
     bouton_quitter=tk.Button(racine_3,text="❌ Quitter",font=("Helvetica", 25),bg="white",fg="black"
@@ -240,9 +240,9 @@ def fermer():
     
 def jouer():
     fermer()
-    main()
+    jeu()
 
-def main():
+def jeu():
     global frame_j, frame_c, bouton_hit, bouton_stand, deck, main_j, main_c, bouton_ff, racine2, label_variable, variable
 
     racine2 = tk.Tk()
@@ -257,7 +257,7 @@ def main():
     tapis.pack(fill=tk.BOTH, expand=True)
 
     tapis.create_text(220, 400, text="🃏 🃏", font=("Helvetica", 120),fill='white')
-    tapis.create_text(1700, 400, text="🃏 🃏", font=("Helvetica", 120),fill='white')
+    tapis.create_text(1050, 400, text="🃏 🃏", font=("Helvetica", 120),fill='white')
 
     frame_global = tk.Frame(frame_principale, bg='darkgreen')
     frame_global.place(relx=0.5, rely=0.45, anchor='center')
