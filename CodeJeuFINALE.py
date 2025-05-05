@@ -138,7 +138,7 @@ def mise_multi_5(): #mise x5
     main_j = distrib_cartes(deck,2)
     main_c = distrib_cartes(deck,2)'''
 
-def stand():
+def stand():        #le joueur décide de ne plus tirer de carte
     global main_c, frame_c, bouton_hit, main_j
     bouton_hit.configure(state="disabled")
     while score(main_c) < 17: # selon la règle de la banque tire à 16 reste à 17
@@ -148,7 +148,7 @@ def stand():
     win(main_j,main_c,mise)
     
 
-deck = cartes_deck()
+deck = cartes_deck()            #initialisation
 main_j = distrib_cartes(deck,2)
 main_c = distrib_cartes(deck,2)
 mise = 100  
@@ -211,7 +211,7 @@ def page_fin(): #code de la page de fin de jeu
     
 def on_select(event):  # gere la mise du joueur en fonction de son choix dans le menu déroulant #https://www.pythontutorial.net/tkinter/tkinter-optionmenu/
     global mise
-    choix = variable.get() # récupératio du texte sélectionné
+    choix = variable.get() # récupération du texte sélectionné
 
     if choix == "Mise x2":
         mise_multi_2()
@@ -225,13 +225,13 @@ def on_select(event):  # gere la mise du joueur en fonction de son choix dans le
     
 
 def afficher_carte(frame, carte, position_x):
-    nom_carte = f"{carte['valeur']} de {carte['couleur']}"
-    chemin = f"cards/{nom_carte}.png"
+    nom_carte = f"{carte['valeur']} de {carte['couleur']}"    #produit le nom de la carte sous la forme recherché en fonction de sa couleur et valeur
+    chemin = f"cards/{nom_carte}.png"        #cherche la carte dans le fichier cards
     if chemin:
-        image = Image.open(chemin).resize((60,100))
-        photo = ImageTk.PhotoImage(image)
+        image = Image.open(chemin).resize((60,100))    #ouvre l'image à l'aide de la bibliothèque pillow
+        photo = ImageTk.PhotoImage(image)              #permet de passer de pillow à tkinter afin de pouvoir utiliser l'image
         label = tk.Label(frame, image=photo)
-        label.image = photo
+        label.image = photo                            #créé une copie local de l'image afin qu'elle ne se supprime pas quand l'interface s'actualise
         label.pack(side=tk.LEFT, padx=position_x, pady=10)
         
 def fermer():
@@ -290,7 +290,7 @@ def main():
     main_j = distrib_cartes(deck, 2)
     main_c = distrib_cartes(deck, 2)
 
-    afficher_carte(frame_j, main_j[0], 10)
+    afficher_carte(frame_j, main_j[0], 10)            #appelle la fonction afficher_carte afin que les cartes tirées apparaissent 
     afficher_carte(frame_j, main_j[1], 11)
     afficher_carte(frame_c, main_c[0], 10)
     afficher_carte(frame_c, main_c[1], 11)
@@ -300,7 +300,7 @@ def main():
     frame_boutons = tk.Frame(frame_principale, bg='darkgreen')
     frame_boutons.place(relx=0.5, rely=0.9, anchor='center')
 
-    label_variable = tk.StringVar()
+    label_variable = tk.StringVar()            #lie une variable à un widget en l'occurence label
     label_variable.set(f"Mise actuelle : {mise} €")
 
     bouton_ff = tk.Button(frame_boutons, text="Abandon :(", font=("Helvetica", 16), command=page_fin,
@@ -318,7 +318,7 @@ def main():
     options = ["Mise x1", "Mise x2", "Mise x5", "Mise x10"]                                      #https://www.pythontutorial.net/tkinter/tkinter-optionmenu/
     variable = tk.StringVar()
     variable.set(options[0])
-    menu = tk.OptionMenu(frame_boutons, variable, *options, command=lambda: on_select(None))
+    menu = tk.OptionMenu(frame_boutons, variable, *options, command=lambda: on_select(None))        #menu qui défile 
     menu.pack(side=tk.LEFT, padx=10)
 
     label = tk.Label(frame_boutons, textvariable=label_variable, font=("Helvetica", 16), bg='darkgreen', fg='white')
@@ -326,7 +326,7 @@ def main():
 
     boutton_mise = tk.Button(frame_boutons, text="Mise", command=lambda: on_select(None))
     boutton_mise.pack(side=tk.LEFT, padx=10)
-    tapis.lower(frame_global)
+    tapis.lower(frame_global)            #permet de mettre le tapis/canvas dèrriere nos autres frames
     racine2.mainloop()
 
     
