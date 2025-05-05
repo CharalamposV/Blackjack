@@ -1,9 +1,14 @@
 responsable GitHub: Charalampos Vekas
+
 responsable de la qualité du code: Bala Diagne
+
 Membres du groupe:
 Ethan Chartrain , LDD MP , 22410387
+
 Bala Diagne, LDD MP, 22406490
+
 Charalampos Vekas, LDD MP, 22402484
+
 Eve Guyard, LDD MP, 22403352
 
 BLACKJACK: https://github.com/CharalamposV/Blackjack/new/main
@@ -23,7 +28,7 @@ Au lancemment il y'aura une page d'acceuil:
 
 Ce menu accueille le joueur dans notre interface de jeu, et lui propose de débuter une partie ou non. 
 Si le joueur accepte de jouer il sera redirigé vers le tapis de jeu:
-[tapis de jeu](image-2.png)
+![tapis de jeu](image-2.png)
 
 Donc comme vous pouvez le voir sur le tapis de jeu le joueur aura ses cartes sur la ligne du bas et celles du croupier sur la ligne du haut.
 Le joueur aura à sa disposition les boutons Hit, Stand, possibilité de mise, abandon, permettant respectivement de:
@@ -35,7 +40,7 @@ Le joueur aura à sa disposition les boutons Hit, Stand, possibilité de mise, a
 -Le bouton abandon comme son nom l'indique fait directement perdre le joueur.
 
 Si la partie se termine d'une quelconque manière alors la page suivante apparaîtra:
-[page de fin de jeu](image-3.png)
+![page de fin de jeu](image-3.png)
 
 Si le joueur souhaite relancer une partie il devra sélectionner le bouton rejouer, il sera alors redirigé vers un tapis comme si il vennait de lancer une partie
 , si le joueur sélectionne le bouton quitter alors le programme se fermera.
