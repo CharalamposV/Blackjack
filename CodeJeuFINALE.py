@@ -181,18 +181,19 @@ print('Votre banque est maintenant de:',banque)'''
 def page_fin(): #code de la page de fin de jeu
     racine_3= tk.Tk()
     racine_3.title("Blackjack - Page de fin")
-    racine_3.geometry("600x400")
+    racine_3.geometry("600x400") #fixation de la taille de la fenetre
     racine_3.configure(bg="#8E9189")  
-    racine_3.attributes('-topmost', True)
+    racine_3.attributes('-topmost', True) # la fenetre reste au premier plan 
     
     bouton_re_jouer = tk.Button(racine_3,text="🔄 Rejouer",font=("Helvetica", 25),bg="white",fg="black"
     ,padx=20,pady=10,command=lambda: [racine_3.destroy(),racine2.destroy(),main()])
     bouton_re_jouer.pack(pady=20)
     
     bouton_quitter=tk.Button(racine_3,text="❌ Quitter",font=("Helvetica", 25),bg="white",fg="black"
-    ,padx=20,pady=10,command=lambda : [racine_3.destroy(),racine2.destroy()])
+    ,padx=20,pady=10,command=lambda : [racine_3.destroy(),racine2.destroy()]) # utilisation fonction anonyme pour plus de rapidité
     bouton_quitter.pack(pady=50)
-    
+
+    # désactivation des boutons pour ne pas intéragir avec apres la fin du jeu 
     bouton_hit.configure(state="disabled")
     bouton_stand.configure(state="disabled")
     bouton_ff.configure(state="disabled")
@@ -207,9 +208,9 @@ def page_fin(): #code de la page de fin de jeu
 
     racine_3.mainloop()
     
-def on_select(event):
+def on_select(event):  # gere la mise du joueur en fonction de son choix dans le menu déroulant
     global mise
-    choix = menu_var.get()
+    choix = menu_var.get() # récupératio du texte sélectionné
 
     if choix == "Mise x2":
         mise_multi_2()
@@ -219,7 +220,7 @@ def on_select(event):
         mise_multi_10()
     elif choix == "Mise x1":
         mise = 100
-    label_var.set(f"Mise actuelle : {mise} €")
+    label_var.set(f"Mise actuelle : {mise} €") # mise a jour de l'affichage (mise choisie s'affiche)
     
 
 def afficher_carte(frame, carte, position_x):
