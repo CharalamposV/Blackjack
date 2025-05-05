@@ -146,6 +146,20 @@ def stand():        #le joueur décide de ne plus tirer de carte
         main_c.append(carte)
         afficher_carte(frame_c,carte,10)
     win(main_j,main_c,mise)
+
+def split(main_j, deck):
+    if len(main_j) != 2:
+        return False
+    carte1 = main_j.pop(0)
+    carte2 = main_j.pop(0)
+    if score(carte1) != score(carte2):
+        return False
+    else:
+        main_j1 = [carte1]
+        main_j2 = [carte2]
+        main_j1.append(deck.pop(0))
+        main_j2.appennd(deck.pop(0))
+        return main_j1,main_j2
     
 
 deck = cartes_deck()            #initialisation
