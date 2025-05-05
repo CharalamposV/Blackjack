@@ -238,14 +238,14 @@ def on_select(event):  # gere la mise du joueur en fonction de son choix dans le
     label_variable.set(f"Mise actuelle : {mise} €") # mise a jour de l'affichage (mise choisie s'affiche)
     
 
-def afficher_carte(frame, carte, position_x):
+def afficher_carte(frame, carte, position_x):    #https://www.pythontutorial.net/tkinter/tkinter-photoimage/
     nom_carte = f"{carte['valeur']} de {carte['couleur']}"    #produit le nom de la carte sous la forme recherché en fonction de sa couleur et valeur
     chemin = f"cards/{nom_carte}.png"        #cherche la carte dans le fichier cards
     if chemin:
         image = Image.open(chemin).resize((60,100))    #ouvre l'image à l'aide de la bibliothèque pillow
         photo = ImageTk.PhotoImage(image)              #permet de passer de pillow à tkinter afin de pouvoir utiliser l'image
         label = tk.Label(frame, image=photo)
-        label.image = photo                            #créé une copie local de l'image afin qu'elle ne se supprime pas quand l'interface s'actualise
+        label.image = photo                            #créé une copie local de l'image afin qu'elle ne se supprime pas quand l'interface s'actualise sans utiliser de classe
         label.pack(side=tk.LEFT, padx=position_x, pady=10)
         
 def fermer():
