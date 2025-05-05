@@ -55,6 +55,7 @@ def win(main_j,main_c,mise): #fonction traitant des conditions de victoire
 
 def score(main): #compter le score que donne les cartes en main
     total = 0
+    nb_as = 0
     for carte in main:
         v=carte['valeur']  #boucle sur chaque carte pour extraire sa valeur
         if v in ['10','valet','dame','roi']:
@@ -208,9 +209,9 @@ def page_fin(): #code de la page de fin de jeu
 
     racine_3.mainloop()
     
-def on_select(event):  # gere la mise du joueur en fonction de son choix dans le menu déroulant
+def on_select(event):  # gere la mise du joueur en fonction de son choix dans le menu déroulant #https://www.pythontutorial.net/tkinter/tkinter-optionmenu/
     global mise
-    choix = menu_var.get() # récupératio du texte sélectionné
+    choix = variable.get() # récupératio du texte sélectionné
 
     if choix == "Mise x2":
         mise_multi_2()
@@ -220,7 +221,7 @@ def on_select(event):  # gere la mise du joueur en fonction de son choix dans le
         mise_multi_10()
     elif choix == "Mise x1":
         mise = 100
-    label_var.set(f"Mise actuelle : {mise} €") # mise a jour de l'affichage (mise choisie s'affiche)
+    label_variable.set(f"Mise actuelle : {mise} €") # mise a jour de l'affichage (mise choisie s'affiche)
     
 
 def afficher_carte(frame, carte, position_x):
@@ -242,7 +243,7 @@ def jouer():
     main()
 
 def main():
-    global frame_j, frame_c, bouton_hit, bouton_stand, deck, main_j, main_c, bouton_ff, racine2, label_var, menu_var
+    global frame_j, frame_c, bouton_hit, bouton_stand, deck, main_j, main_c, bouton_ff, racine2, label_variable, variable
 
     racine2 = tk.Tk()
     racine2.title("Interface de jeu")
@@ -314,7 +315,7 @@ def main():
                            bg='lightgreen', fg='black', padx=20, pady=10)
     bouton_hit.pack(side=tk.LEFT, padx=20)
 
-    options = ["Mise x1", "Mise x2", "Mise x5", "Mise x10"]
+    options = ["Mise x1", "Mise x2", "Mise x5", "Mise x10"]                                      #https://www.pythontutorial.net/tkinter/tkinter-optionmenu/
     variable = tk.StringVar()
     variable.set(options[0])
     menu = tk.OptionMenu(frame_boutons, variable, *options, command=lambda: on_select(None))
