@@ -19,7 +19,7 @@ Pour pouvoir l'utiliser il faudra avoir les bibliothèques suivantes d'installé
 - Random
 
 Au lancemment il y'aura une page d'acceuil:
-[page d'accueil](image.png)
+(image.png)
 
 Ce menu accueille le joueur dans notre interface de jeu, et lui propose de débuter une partie ou non. 
 Si le joueur accepte de jouer il sera redirigé vers le tapis de jeu:
