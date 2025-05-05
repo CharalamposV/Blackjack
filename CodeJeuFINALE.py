@@ -15,7 +15,7 @@ def win(main_j,main_c,mise): #fonction traitant des conditions de victoire
     result=False
     if len(main_j)==2 and score(main_j)==21:
         banque += mise*1.5
-        messagebox.showinfo("Blackjack!!","Tu as gagné avec un Blackjack naturel")
+        messagebox.showinfo("Blackjack!!","Tu as gagné avec un Blackjack naturel")  #d'apres docspython.org
         page_fin()
         return True
     elif len(main_j)<len(main_c) and score(main_j)==21:
@@ -56,7 +56,7 @@ def win(main_j,main_c,mise): #fonction traitant des conditions de victoire
 def score(main): #compter le score que donne les cartes en main
     total = 0
     for carte in main:
-        v=carte['valeur']
+        v=carte['valeur']  #boucle sur chaque carte pour extraire sa valeur
         if v in ['10','valet','dame','roi']:
             total += 10
         elif v == 'as':
@@ -74,11 +74,11 @@ def score(main): #compter le score que donne les cartes en main
 def distrib_cartes(deck,nb_cartes): #distribuer le nombre de cartes demandé
     main = []
     for i in range(nb_cartes):
-        carte = deck.pop(0)
+        carte = deck.pop(0) 
         main.append(carte)
     return main
 
-def hit():
+def hit(): #fonction permettant de hit 
     global deck
     global main_j
     carte=distrib_cartes(deck,1)
@@ -95,7 +95,7 @@ def jouer_croupier(): # selon la règle de la banque tire a 16 et reste a 17
     while score(main_c) < 17:
         main_c.append(deck.pop())
     if score(main_c) > 21:
-        messagebox.showinfo("Le croupier a dépassé 21 ")  #d'apres docspython.org
+        messagebox.showinfo("Le croupier a dépassé 21 ")  
     elif score(main_j) > score(main_c):
         messagebox.showinfo("Vous avez gagné !")
     elif score(main_j) < score(main_c):
@@ -108,15 +108,16 @@ def mise(): #fonction permettant au joueur de miser
     if mise<mise_min:
         val=mise+mise_min
     return
-def mise_multi_10():
+    
+def mise_multi_10(): #mise x10
     global mise
     mise*=10
     return
-def mise_multi_2():
+def mise_multi_2(): #mise x2
     global mise
     mise*=2
     return
-def mise_multi_5():
+def mise_multi_5(): #mise x5
     global mise
     mise*=5
     return
@@ -139,7 +140,7 @@ def mise_multi_5():
 def stand():
     global main_c, frame_c, bouton_hit, main_j
     bouton_hit.configure(state="disabled")
-    while score(main_c) < 17:
+    while score(main_c) < 17: # selon la règle de la banque tire à 16 reste à 17
         carte = deck.pop(0)
         main_c.append(carte)
         afficher_carte(frame_c,carte,10)
@@ -151,6 +152,7 @@ main_j = distrib_cartes(deck,2)
 main_c = distrib_cartes(deck,2)
 mise = 100  
 banque = 1000
+
 '''while win(main_j,main_c,mise) != True:
     print('Main joueur:',main_j)
     print('Main croupier:',main_c)
@@ -176,12 +178,13 @@ banque = 1000
             break
 print('Votre banque est maintenant de:',banque)'''
 
-def page_fin():
+def page_fin(): #code de la page de fin de jeu
     racine_3= tk.Tk()
     racine_3.title("Blackjack - Page de fin")
     racine_3.geometry("600x400")
     racine_3.configure(bg="#8E9189")  
     racine_3.attributes('-topmost', True)
+    
     bouton_re_jouer = tk.Button(racine_3,text="🔄 Rejouer",font=("Helvetica", 25),bg="white",fg="black"
     ,padx=20,pady=10,command=lambda: [racine_3.destroy(),racine2.destroy(),main()])
     bouton_re_jouer.pack(pady=20)
@@ -228,6 +231,7 @@ def afficher_carte(frame, carte, position_x):
         label = tk.Label(frame, image=photo)
         label.image = photo
         label.pack(side=tk.LEFT, padx=position_x, pady=10)
+        
 def fermer():
         racine.destroy()
         return
@@ -288,8 +292,9 @@ def main():
     afficher_carte(frame_j, main_j[1], 11)
     afficher_carte(frame_c, main_c[0], 10)
     afficher_carte(frame_c, main_c[1], 11)
+    
 
-    # Boutons en bas
+    # Boutons en bas (hit,stand,ff,mise)
     frame_boutons = tk.Frame(frame_principale, bg='darkgreen')
     frame_boutons.place(relx=0.5, rely=0.9, anchor='center')
 
